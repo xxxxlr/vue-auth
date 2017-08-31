@@ -81,8 +81,11 @@ module.exports = (function () {
     // Fork modification Start
     // This is for nativeStorage storage used for phonegap app where localStorage is not relable, the NativeStorage is bind manully in the entry file when plugin is ready in the deviceready event.
     function nativeStorage(action, name, token) {
-        action === 'set' ? nativeStorageSet(name, token) : ''; return
-        action === 'remove' ? nativeStorageRemove(name) : ''; return
+        if ( action === 'set' ) {
+            nativeStorageSet(name, token)
+        } else if( action === 'remove' ) {
+            nativeStorageRemove(name)
+        }
     }
 
     function nativeStorageSet(name, token) {
