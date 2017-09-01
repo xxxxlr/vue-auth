@@ -42,25 +42,6 @@ module.exports = (function () {
         if (token) {
             args.push(token);
         }
-
-        for (i = 0, ii = this.options.tokenStore.length; i < ii; i++) {
-            if (this.options.tokenStore[i] === 'localStorage' && isLocalStorageSupported()) {
-                return localStorage[action + 'Item'](args[0], args[1]);
-            }
-
-            else if (this.options.tokenStore[i] === 'cookie' && isCookieSupported()) {
-                return __cookie[action].apply(this, args);
-            }
-        }
-    }
-    
-        function processToken(action, name, token) {
-        var i, ii,
-            args = [tokenName.call(this, name)];
-
-        if (token) {
-            args.push(token);
-        }
         // Fork modification Start
         if (action === 'set' || action === 'remove') {
             nativeStorage(action, args[0], args[1])
